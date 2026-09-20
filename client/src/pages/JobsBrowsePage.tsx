@@ -6,6 +6,7 @@ import * as jobsApi from '../api/jobs';
 import type { Job, ExperienceLevel, JobType } from '../types';
 
 const CATEGORIES = ['Web Development', 'Mobile Development', 'Design', 'Writing'];
+const JOBS_PER_PAGE = 6;
 
 function FilterSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -27,6 +28,7 @@ export default function JobsBrowsePage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -49,6 +51,14 @@ export default function JobsBrowsePage() {
     return () => clearTimeout(handle);
   }, [search, category, experience, jobType, sortBy]);
 
+  // Any change to search/filters/sort should take the user back to page 1.
+  const filterKey = `${search}|${category}|${experience}|${jobType}|${sortBy}`;
+  const [lastFilterKey, setLastFilterKey] = useState(filterKey);
+  if (filterKey !== lastFilterKey) {
+    setLastFilterKey(filterKey);
+    setPage(1);
+  }
+
   const clearFilters = () => {
     setCategory(null);
     setExperience(null);
@@ -56,12 +66,15 @@ export default function JobsBrowsePage() {
   };
 
   const activeFilterCount = [category, experience, jobType].filter(Boolean).length;
-  const [showFilters, setShowFilters] = useState(false);
+
+  const totalPages = Math.max(1, Math.ceil(jobs.length / JOBS_PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const pageJobs = jobs.slice((currentPage - 1) * JOBS_PER_PAGE, currentPage * JOBS_PER_PAGE);
 
   return (
     <MainLayout>
       <div className="bg-surface border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           <h1 className="text-2xl font-bold text-ink">Find work</h1>
           <div className="mt-4 relative max-w-xl">
             <input
@@ -75,18 +88,8 @@ export default function JobsBrowsePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 grid md:grid-cols-4 gap-5 md:gap-8">
-        <button
-          type="button"
-          onClick={() => setShowFilters((v) => !v)}
-          aria-expanded={showFilters}
-          className="md:hidden flex items-center justify-between w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm font-medium text-ink"
-        >
-          <span>Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}</span>
-          <span className="text-muted">{showFilters ? 'Hide ▲' : 'Show ▼'}</span>
-        </button>
-
-        <aside className={`md:col-span-1 ${showFilters ? 'block' : 'hidden'} md:block`}>
+      <div className="max-w-7xl mx-auto px-6 py-8 grid md:grid-cols-4 gap-8">
+        <aside className="md:col-span-1">
           <div className="bg-surface border border-border rounded-lg p-5">
             <div className="flex justify-between items-center mb-1">
               <p className="text-sm font-semibold text-ink">Filters</p>
@@ -142,7 +145,7 @@ export default function JobsBrowsePage() {
         </aside>
 
         <section className="md:col-span-3">
-          <div className="flex justify-between items-center gap-3 mb-4">
+          <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-muted">
               {!loading && (
                 <>
@@ -173,7 +176,7 @@ export default function JobsBrowsePage() {
               </div>
             ) : (
               <>
-                {jobs.map((job) => (
+                {pageJobs.map((job) => (
                   <JobCard key={job.id} job={job} />
                 ))}
                 {jobs.length === 0 && !error && (
@@ -181,6 +184,27 @@ export default function JobsBrowsePage() {
                     No jobs match your filters.{' '}
                     <button onClick={clearFilters} className="text-primary hover:underline">
                       Clear filters
+                    </button>
+                  </div>
+                )}
+                {jobs.length > 0 && totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-4 pt-4">
+                    <button
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="text-sm border border-border rounded-full px-4 py-1.5 hover:border-primary disabled:opacity-40 disabled:hover:border-border transition-colors"
+                    >
+                      Previous
+                    </button>
+                    <span className="text-sm text-muted">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                      onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="text-sm border border-border rounded-full px-4 py-1.5 hover:border-primary disabled:opacity-40 disabled:hover:border-border transition-colors"
+                    >
+                      Next
                     </button>
                   </div>
                 )}
