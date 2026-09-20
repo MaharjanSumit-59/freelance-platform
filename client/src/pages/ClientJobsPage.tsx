@@ -36,8 +36,8 @@ export default function ClientJobsPage() {
 
   return (
     <MainLayout>
-      <div className="max-w-3xl mx-auto px-6 py-10">
-        <div className="flex justify-between items-center mb-6">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+        <div className="flex justify-between items-center gap-3 mb-6">
           <h1 className="text-2xl font-bold text-ink">My jobs</h1>
           <Link
             to="/client/jobs/new"
@@ -68,15 +68,15 @@ export default function ClientJobsPage() {
                   key={job.id}
                   className="border border-border rounded-lg p-5 bg-surface hover:border-primary hover:shadow-sm transition-all"
                 >
-                  <div className="flex justify-between items-center">
-                    <p className="font-semibold text-ink">{job.title}</p>
-                    <span className="text-xs font-medium uppercase tracking-wide bg-primary-light text-primary-dark px-2.5 py-1 rounded-full">
+                  <div className="flex justify-between items-start gap-3">
+                    <p className="font-semibold text-ink min-w-0 break-words">{job.title}</p>
+                    <span className="text-xs font-medium uppercase tracking-wide bg-primary-light text-primary-dark px-2.5 py-1 rounded-full shrink-0">
                       {job.status.replace('_', ' ')}
                     </span>
                   </div>
                   <p className="text-sm text-muted mt-1">{job.proposalCount} proposals</p>
 
-                  <div className="flex items-center gap-4 mt-3 text-sm">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-sm">
                     <Link to={`/client/jobs/${job.id}/proposals`} className="text-primary hover:underline">
                       View proposals →
                     </Link>

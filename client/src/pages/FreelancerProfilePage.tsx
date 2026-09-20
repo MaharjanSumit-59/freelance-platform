@@ -26,7 +26,7 @@ export default function FreelancerProfilePage() {
   if (loading) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center text-muted">Loading profile...</div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Loading profile...</div>
       </MainLayout>
     );
   }
@@ -34,7 +34,7 @@ export default function FreelancerProfilePage() {
   if (notFound || !data) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
           <p className="text-muted">Freelancer not found.</p>
           <Link to="/jobs" className="text-primary underline">Back to jobs</Link>
         </div>
@@ -47,13 +47,13 @@ export default function FreelancerProfilePage() {
   return (
     <MainLayout>
       <div className="bg-surface border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 py-8 flex items-start gap-5 justify-between">
-          <div className="flex items-start gap-5">
-            <div className="w-20 h-20 rounded-full bg-primary-light flex items-center justify-center text-2xl font-semibold text-primary-dark flex-shrink-0">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 justify-between">
+          <div className="flex items-start gap-4 sm:gap-5 min-w-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-light flex items-center justify-center text-xl sm:text-2xl font-semibold text-primary-dark flex-shrink-0">
               {user.name.split(' ').map((n) => n[0]).join('')}
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-ink">{user.name}</h1>
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-ink break-words">{user.name}</h1>
               <p className="text-ink/70 mt-0.5">{profile?.title || 'Freelancer'}</p>
               <div className="flex items-center gap-1 mt-2 text-sm">
                 <span className="text-star">★</span>
@@ -73,7 +73,7 @@ export default function FreelancerProfilePage() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
           {profile?.about && (
             <div>
@@ -130,7 +130,7 @@ export default function FreelancerProfilePage() {
         </div>
 
         <aside className="md:col-span-1">
-          <div className="bg-surface border border-border rounded-lg p-5 sticky top-20 space-y-4">
+          <div className="bg-surface border border-border rounded-lg p-5 md:sticky md:top-20 space-y-4">
             <div>
               <p className="text-xs text-muted">Hourly rate</p>
               <p className="text-xl font-bold text-ink">${profile?.hourlyRate ?? 0}/hr</p>

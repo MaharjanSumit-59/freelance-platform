@@ -56,11 +56,12 @@ export default function JobsBrowsePage() {
   };
 
   const activeFilterCount = [category, experience, jobType].filter(Boolean).length;
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
     <MainLayout>
       <div className="bg-surface border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
           <h1 className="text-2xl font-bold text-ink">Find work</h1>
           <div className="mt-4 relative max-w-xl">
             <input
@@ -74,8 +75,18 @@ export default function JobsBrowsePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 grid md:grid-cols-4 gap-8">
-        <aside className="md:col-span-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 grid md:grid-cols-4 gap-5 md:gap-8">
+        <button
+          type="button"
+          onClick={() => setShowFilters((v) => !v)}
+          aria-expanded={showFilters}
+          className="md:hidden flex items-center justify-between w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm font-medium text-ink"
+        >
+          <span>Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}</span>
+          <span className="text-muted">{showFilters ? 'Hide ▲' : 'Show ▼'}</span>
+        </button>
+
+        <aside className={`md:col-span-1 ${showFilters ? 'block' : 'hidden'} md:block`}>
           <div className="bg-surface border border-border rounded-lg p-5">
             <div className="flex justify-between items-center mb-1">
               <p className="text-sm font-semibold text-ink">Filters</p>
@@ -131,7 +142,7 @@ export default function JobsBrowsePage() {
         </aside>
 
         <section className="md:col-span-3">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center gap-3 mb-4">
             <p className="text-sm text-muted">
               {!loading && (
                 <>

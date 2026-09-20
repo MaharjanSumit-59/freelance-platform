@@ -146,11 +146,11 @@ export default function DashboardPage() {
 
   return (
     <MainLayout>
-      <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         <h1 className="text-2xl font-bold text-ink">Welcome back, {currentUser.name.split(' ')[0]}</h1>
         <p className="text-sm text-muted mt-1 capitalize">{currentUser.role} account</p>
 
-        <div className="grid sm:grid-cols-4 gap-4 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8">
           {isClient ? (
             <>
               <StatCard label="Open jobs" value={openJobs.length} to="/client/jobs" />

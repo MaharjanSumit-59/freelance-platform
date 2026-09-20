@@ -43,7 +43,7 @@ export default function FreelancerProposalsPage() {
 
   return (
     <MainLayout>
-      <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         <h1 className="text-2xl font-bold text-ink mb-6">My proposals</h1>
 
         {loading ? (
@@ -70,7 +70,7 @@ export default function FreelancerProposalsPage() {
                     to={`/jobs/${p.job.id}`}
                     className="block border border-border rounded-lg p-4 bg-surface hover:border-primary hover:shadow-sm transition-all"
                   >
-                    <div className="flex justify-between items-start">
+                    <div className="flex justify-between items-start gap-3">
                       <p className="font-medium text-ink">{p.job.title}</p>
                       <span className={`text-xs font-medium uppercase tracking-wide px-2.5 py-1 rounded-full ${STATUS_STYLE[p.status]}`}>
                         {p.status}

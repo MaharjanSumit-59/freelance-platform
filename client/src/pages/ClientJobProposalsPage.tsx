@@ -88,7 +88,7 @@ export default function ClientJobProposalsPage() {
   if (loading) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center text-muted">Loading...</div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Loading...</div>
       </MainLayout>
     );
   }
@@ -96,14 +96,14 @@ export default function ClientJobProposalsPage() {
   if (notFound || !job) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center text-muted">Job not found.</div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Job not found.</div>
       </MainLayout>
     );
   }
 
   return (
     <MainLayout>
-      <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         <Link to="/client/jobs" className="text-sm text-muted hover:text-primary">&larr; My jobs</Link>
         <h1 className="text-2xl font-bold text-ink mt-4">{job.title}</h1>
         <p className="text-sm text-muted mt-1">{proposals.length} proposals</p>
@@ -121,12 +121,12 @@ export default function ClientJobProposalsPage() {
           )}
           {proposals.map((p) => (
             <div key={p.id} className="border border-border rounded-lg p-5 bg-surface">
-              <div className="flex justify-between items-start">
-                <div className="flex items-start gap-3">
+              <div className="flex justify-between items-start gap-3">
+                <div className="flex items-start gap-3 min-w-0">
                   <div className="w-10 h-10 rounded-full bg-primary-light text-primary-dark flex items-center justify-center text-xs font-semibold shrink-0">
                     {p.freelancerName.split(' ').map((n) => n[0]).join('')}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <Link to={`/freelancers/${p.freelancerId}`} className="font-semibold text-ink hover:text-primary">
                       {p.freelancerName}
                     </Link>

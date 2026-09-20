@@ -18,7 +18,12 @@
   --color-star: #FFA23A;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
+  overflow-x: clip;
   background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);

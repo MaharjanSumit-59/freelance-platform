@@ -89,16 +89,16 @@ export default function EditFreelancerProfilePage() {
   if (loading) {
     return (
       <MainLayout>
-        <div className="max-w-2xl mx-auto px-6 py-16 text-center text-muted">Loading your profile...</div>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Loading your profile...</div>
       </MainLayout>
     );
   }
 
   return (
     <MainLayout>
-      <div className="max-w-2xl mx-auto px-6 py-10">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-ink">Edit your profile</h1>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="text-xl sm:text-2xl font-bold text-ink">Edit your profile</h1>
           <button
             type="button"
             onClick={() => navigate(`/freelancers/${currentUser.id}`)}

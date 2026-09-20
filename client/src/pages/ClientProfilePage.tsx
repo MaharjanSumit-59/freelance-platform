@@ -26,7 +26,7 @@ export default function ClientProfilePage() {
   if (loading) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center text-muted">Loading profile...</div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Loading profile...</div>
       </MainLayout>
     );
   }
@@ -34,7 +34,7 @@ export default function ClientProfilePage() {
   if (notFound || !data) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
           <p className="text-muted">Client not found.</p>
           <Link to="/jobs" className="text-primary underline">Back to jobs</Link>
         </div>
@@ -47,13 +47,13 @@ export default function ClientProfilePage() {
   return (
     <MainLayout>
       <div className="bg-surface border-b border-border">
-        <div className="max-w-3xl mx-auto px-6 py-8 flex items-start gap-5 justify-between">
-          <div className="flex items-start gap-5">
-            <div className="w-20 h-20 rounded-full bg-primary-light flex items-center justify-center text-2xl font-semibold text-primary-dark flex-shrink-0">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 justify-between">
+          <div className="flex items-start gap-4 sm:gap-5 min-w-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-light flex items-center justify-center text-xl sm:text-2xl font-semibold text-primary-dark flex-shrink-0">
               {user.name.split(' ').map((n) => n[0]).join('')}
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-ink">{profile?.companyName || user.name}</h1>
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-ink break-words">{profile?.companyName || user.name}</h1>
               <p className="text-ink/70 mt-0.5">{user.name}</p>
               {profile?.location && <p className="text-sm text-muted mt-1">{profile.location}</p>}
               <p className="text-xs text-muted mt-1">Member since {new Date(user.createdAt).getFullYear()}</p>
@@ -70,7 +70,7 @@ export default function ClientProfilePage() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
           {profile?.about ? (
             <div>
@@ -83,7 +83,7 @@ export default function ClientProfilePage() {
         </div>
 
         <aside className="md:col-span-1">
-          <div className="bg-surface border border-border rounded-lg p-5 sticky top-20 space-y-4">
+          <div className="bg-surface border border-border rounded-lg p-5 md:sticky md:top-20 space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
                 <p className="text-xs text-muted">Jobs posted</p>

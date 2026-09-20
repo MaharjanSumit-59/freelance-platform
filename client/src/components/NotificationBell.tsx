@@ -55,7 +55,7 @@ export default function NotificationBell() {
 
   return (
     <div className="relative" ref={ref}>
-      <button onClick={() => setOpen((o) => !o)} className="relative hover:text-primary transition-colors">
+      <button onClick={() => setOpen((o) => !o)} className="relative p-1 hover:text-primary transition-colors" aria-label="Notifications">
         🔔
         {unreadCount > 0 && (
           <span className="absolute -top-1.5 -right-2 bg-warn text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
@@ -65,7 +65,7 @@ export default function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-80 max-h-96 overflow-y-auto border border-border rounded-lg bg-surface shadow-lg z-10">
+        <div className="fixed left-4 right-4 top-[4.5rem] max-h-[70vh] sm:absolute sm:left-auto sm:right-0 sm:top-auto sm:mt-2 sm:w-80 sm:max-h-96 overflow-y-auto border border-border rounded-lg bg-surface shadow-lg z-10">
           <div className="flex justify-between items-center px-4 py-2 border-b border-border">
             <p className="text-sm font-medium">Notifications</p>
             {unreadCount > 0 && (
@@ -96,8 +96,8 @@ export default function NotificationBell() {
             >
               <div className="flex gap-2 items-start">
                 <span>{TYPE_ICON[n.type] ?? '🔔'}</span>
-                <div className="flex-1">
-                  <p className="text-sm">{n.message}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm break-words">{n.message}</p>
                   <p className="text-xs text-muted mt-0.5">{timeAgo(n.createdAt)}</p>
                 </div>
                 {!n.read && <span className="w-2 h-2 rounded-full bg-warn mt-1.5" />}

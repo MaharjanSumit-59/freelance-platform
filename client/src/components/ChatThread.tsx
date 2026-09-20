@@ -46,7 +46,7 @@ export default function ChatThread({
   };
 
   return (
-    <div className="flex flex-col h-[500px]">
+    <div className="flex flex-col h-[65vh] min-h-[320px] max-h-[500px]">
       <div className="flex-1 overflow-y-auto space-y-3 px-1">
         {messages.length === 0 && (
           <p className="text-sm text-muted text-center py-8">No messages yet. Say hello.</p>
@@ -56,7 +56,7 @@ export default function ChatThread({
           return (
             <div key={m.id} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
               <div
-                className={`max-w-[75%] rounded-lg px-3 py-2 text-sm ${
+                className={`max-w-[85%] sm:max-w-[75%] break-words rounded-lg px-3 py-2 text-sm ${
                   isMine ? 'bg-primary text-white' : 'bg-white border border-border text-ink'
                 }`}
               >
@@ -77,7 +77,7 @@ export default function ChatThread({
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1 border border-border rounded px-3 py-2 text-sm bg-white"
+          className="flex-1 min-w-0 border border-border rounded px-3 py-2 text-sm bg-white"
         />
         <button
           type="submit"

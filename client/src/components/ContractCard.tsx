@@ -77,10 +77,10 @@ export default function ContractCard({
   };
 
   return (
-    <div className="border border-border rounded-lg p-5 bg-surface">
-      <div className="flex justify-between items-start">
-        <div>
-          <p className="text-lg font-semibold text-ink">{job?.title ?? '...'}</p>
+    <div className="border border-border rounded-lg p-4 sm:p-5 bg-surface">
+      <div className="flex justify-between items-start gap-3">
+        <div className="min-w-0">
+          <p className="text-lg font-semibold text-ink break-words">{job?.title ?? '...'}</p>
           <p className="text-sm text-muted mt-1">
             {viewerRole === 'client' ? 'Freelancer' : 'Client'}:{' '}
             <Link
@@ -91,12 +91,12 @@ export default function ContractCard({
             </Link>
           </p>
         </div>
-        <span className="text-xs font-medium uppercase tracking-wide bg-primary-light text-primary-dark px-2.5 py-1 rounded-full whitespace-nowrap">
+        <span className="text-xs font-medium uppercase tracking-wide bg-primary-light text-primary-dark px-2.5 py-1 rounded-full whitespace-nowrap shrink-0">
           {contract.status.replace('_', ' ')}
         </span>
       </div>
 
-      <div className="flex gap-6 mt-3 text-sm text-muted">
+      <div className="flex flex-wrap gap-x-6 gap-y-1 mt-3 text-sm text-muted">
         <span>Budget: <span className="text-ink font-semibold">${contract.agreedPrice}</span></span>
         <span>Paid so far: ${paidSoFar}</span>
         <span>Deadline: {new Date(contract.deadline).toLocaleDateString()}</span>
@@ -113,7 +113,7 @@ export default function ContractCard({
         {contract.milestones.map((m) => (
           <div
             key={m.id}
-            className="flex items-center gap-3 text-sm py-2 border-b border-border/60 last:border-0"
+            className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm py-2 border-b border-border/60 last:border-0"
           >
             <span className={m.status === 'approved' ? 'line-through text-muted' : ''}>{m.title}</span>
             <span className="text-xs text-muted">{STATUS_LABEL[m.status]}</span>

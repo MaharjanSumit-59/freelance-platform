@@ -19,7 +19,7 @@ export default function FreelancerContractsPage() {
 
   return (
     <MainLayout>
-      <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
         <h1 className="text-2xl font-bold text-ink mb-6">My contracts</h1>
         <div className="space-y-4">
           {loading ? (

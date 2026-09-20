@@ -34,7 +34,7 @@ export default function JobDetailPage() {
   if (loading) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center text-muted">Loading job...</div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center text-muted">Loading job...</div>
       </MainLayout>
     );
   }
@@ -42,7 +42,7 @@ export default function JobDetailPage() {
   if (notFound || !job) {
     return (
       <MainLayout>
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
           <p className="text-muted">Job not found.</p>
           <Link to="/jobs" className="text-primary underline">Back to jobs</Link>
         </div>
@@ -53,10 +53,10 @@ export default function JobDetailPage() {
   return (
     <MainLayout>
       <div className="bg-surface border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 py-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
           <Link to="/jobs" className="text-sm text-muted hover:text-primary">&larr; Back to jobs</Link>
-          <div className="mt-3 flex justify-between items-start gap-6">
-            <h1 className="text-2xl font-bold text-ink">{job.title}</h1>
+          <div className="mt-3 flex flex-col-reverse items-start gap-3 sm:flex-row sm:justify-between sm:gap-6">
+            <h1 className="text-xl sm:text-2xl font-bold text-ink break-words min-w-0">{job.title}</h1>
             <span className="text-xs font-medium uppercase tracking-wide bg-primary-light text-primary-dark px-2.5 py-1 rounded-full whitespace-nowrap">
               {job.status.replace('_', ' ')}
             </span>
@@ -67,7 +67,7 @@ export default function JobDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
           <div>
             <h2 className="text-sm font-semibold text-ink uppercase tracking-wide mb-3">Job description</h2>
@@ -104,7 +104,7 @@ export default function JobDetailPage() {
         </div>
 
         <aside className="md:col-span-1">
-          <div className="bg-surface border border-border rounded-lg p-5 sticky top-20 space-y-4">
+          <div className="bg-surface border border-border rounded-lg p-5 md:sticky md:top-20 space-y-4">
             <div>
               <p className="text-xs text-muted">{job.jobType === 'fixed' ? 'Fixed price' : 'Hourly rate'}</p>
               <p className="text-xl font-bold text-ink">

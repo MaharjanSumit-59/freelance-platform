@@ -25,8 +25,8 @@ export default function RegisterPage() {
 
   return (
     <MainLayout>
-      <div className="min-h-[80vh] flex items-center justify-center px-6 py-16">
-        <div className="w-full max-w-sm bg-surface border border-border rounded-xl p-8 shadow-sm">
+      <div className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-16">
+        <div className="w-full max-w-sm bg-surface border border-border rounded-xl p-6 sm:p-8 shadow-sm">
           <h1 className="text-2xl font-bold text-ink text-center">Join FreelanceHub</h1>
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-6">

@@ -74,7 +74,7 @@ export default function MessagesPage() {
 
   return (
     <MainLayout>
-      <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 grid md:grid-cols-3 gap-6">
         <aside className="md:col-span-1 border border-border rounded-lg bg-surface overflow-hidden">
           <p className="text-sm font-medium px-4 py-3 border-b border-border">Conversations</p>
           {loading && <p className="text-sm text-muted px-4 py-6">Loading...</p>}

@@ -66,13 +66,13 @@ export default function LandingPage() {
   return (
     <MainLayout>
       <section className="bg-[#0D2E13]">
-        <div className="max-w-5xl mx-auto px-6 pt-16 pb-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-14 sm:pt-16 sm:pb-20 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
             Find the right freelancer
-            <br />
+            <br className="hidden sm:block" />{' '}
             for the work that matters
           </h1>
-          <p className="mt-4 text-white/70 text-lg">
+          <p className="mt-4 text-white/70 text-base sm:text-lg">
             Post a job, compare proposals, and hire — all in one place.
           </p>
 
@@ -81,11 +81,11 @@ export default function LandingPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Try 'React developer' or 'logo design'"
-              className="flex-1 px-4 py-2.5 text-sm text-ink focus:outline-none"
+              className="flex-1 min-w-0 px-3 sm:px-4 py-2.5 text-sm text-ink focus:outline-none"
             />
             <button
               type="submit"
-              className="bg-primary text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-primary-dark transition-colors"
+              className="bg-primary text-white text-sm font-semibold px-4 sm:px-6 py-2.5 rounded-full hover:bg-primary-dark transition-colors"
             >
               Search
             </button>
@@ -104,7 +104,7 @@ export default function LandingPage() {
           </div>
 
           {hasMeaningfulStats && (
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-lg mx-auto border-t border-white/15 pt-8">
+            <div className="mt-10 sm:mt-12 grid grid-cols-3 gap-3 sm:gap-6 max-w-lg mx-auto border-t border-white/15 pt-8">
               <div>
                 <p className="text-2xl font-bold text-white">{stats!.freelancerCount}+</p>
                 <p className="text-xs text-white/60 mt-1">Freelancers</p>
@@ -122,8 +122,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-6">
-        <div className="bg-surface border border-border rounded-xl p-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-2 gap-6">
+        <div className="bg-surface border border-border rounded-xl p-6 sm:p-8">
           <p className="text-xs font-semibold text-primary uppercase tracking-wide">For clients</p>
           <h2 className="text-2xl font-bold text-ink mt-2">Hire top talent, fast</h2>
           <p className="text-ink/70 mt-3">
@@ -137,7 +137,7 @@ export default function LandingPage() {
           </Link>
         </div>
 
-        <div className="bg-surface border border-border rounded-xl p-8">
+        <div className="bg-surface border border-border rounded-xl p-6 sm:p-8">
           <p className="text-xs font-semibold text-primary uppercase tracking-wide">For freelancers</p>
           <h2 className="text-2xl font-bold text-ink mt-2">Find work you'll love</h2>
           <p className="text-ink/70 mt-3">
@@ -153,7 +153,7 @@ export default function LandingPage() {
       </section>
 
       <section className="border-t border-border bg-surface">
-        <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-2xl font-bold text-ink text-center">Everything you need to work together</h2>
           <p className="text-ink/60 text-center mt-2">No surprises — here's exactly what's built in.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
@@ -169,14 +169,14 @@ export default function LandingPage() {
       </section>
 
       <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-2xl font-bold text-ink text-center mb-10">Browse by category</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {CATEGORIES.map((c) => (
               <Link
                 key={c}
                 to={`/jobs?category=${encodeURIComponent(c)}`}
-                className="bg-surface border border-border rounded-xl p-6 text-center hover:border-primary hover:shadow-sm transition-all"
+                className="bg-surface border border-border rounded-xl p-4 sm:p-6 text-center hover:border-primary hover:shadow-sm transition-all"
               >
                 <span className="text-2xl">{CATEGORY_ICON[c]}</span>
                 <p className="text-sm font-semibold text-ink mt-2">{c}</p>
@@ -192,7 +192,7 @@ export default function LandingPage() {
       </section>
 
       <section className="border-t border-border bg-surface">
-        <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-2xl font-bold text-ink text-center mb-10">How FreelanceHub works</h2>
           <div className="grid md:grid-cols-5 gap-6">
             {[
@@ -214,7 +214,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-[#0D2E13]">
-        <div className="max-w-3xl mx-auto px-6 py-16 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white">Ready to get started?</h2>
           <p className="text-white/70 mt-2">Join as a client or freelancer — it only takes a minute.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
