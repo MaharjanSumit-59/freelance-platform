@@ -25,11 +25,7 @@ export default function LoginPage() {
       <div className="min-h-[80vh] flex items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm bg-surface border border-border rounded-xl p-8 shadow-sm">
           <h1 className="text-2xl font-bold text-ink text-center">Log in to FreelanceHub</h1>
-          <p className="text-xs text-muted mt-2 text-center bg-bg rounded px-3 py-2">
-            Try <span className="font-mono">sarah@acme.com</span> or{' '}
-            <span className="font-mono">john@dev.com</span>, password{' '}
-            <span className="font-mono">password123</span>
-          </p>
+          
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-6">
             <div>
