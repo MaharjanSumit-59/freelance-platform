@@ -10,7 +10,11 @@ import { Message } from './models/Message.js';
 import { Review } from './models/Review.js';
 import { Notification } from './models/Notification.js';
 
+import { defaultMilestones } from './utils/milestones.js';
+
 dotenv.config();
+
+
 
 // ---------------------------------------------------------------------------
 // Small helpers
@@ -47,16 +51,6 @@ function addDays(date: Date, n: number): Date {
   return d;
 }
 
-// Mirrors the 4-phase split used in proposalController when a proposal is accepted.
-function defaultMilestones(totalPrice: number) {
-  const cut = Math.floor(totalPrice * 0.25);
-  return [
-    { title: 'Planning & design', amount: cut, status: 'pending' as MilestoneStatus },
-    { title: 'Core implementation', amount: cut * 2, status: 'pending' as MilestoneStatus },
-    { title: 'Testing & revisions', amount: cut, status: 'pending' as MilestoneStatus },
-    { title: 'Delivery', amount: totalPrice - cut * 4, status: 'pending' as MilestoneStatus },
-  ];
-}
 
 // ---------------------------------------------------------------------------
 // Seed data

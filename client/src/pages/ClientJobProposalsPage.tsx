@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ApiError } from '../api/client';
 import { useEffect, useState, useCallback } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import * as jobsApi from '../api/jobs';
@@ -20,6 +21,8 @@ export default function ClientJobProposalsPage() {
   const [notFound, setNotFound] = useState(false);
   const [actingOn, setActingOn] = useState<string | null>(null);
   const [cvError, setCvError] = useState('');
+  const navigate = useNavigate();
+  const [actionError, setActionError] = useState('');
 
   const handleViewCv = async (proposalId: string) => {
     setCvError('');
@@ -66,20 +69,28 @@ export default function ClientJobProposalsPage() {
   }, [load]);
 
   const handleAccept = async (proposalId: string) => {
-    setActingOn(proposalId);
-    try {
-      await proposalsApi.acceptProposal(proposalId);
-      await load();
-    } finally {
-      setActingOn(null);
-    }
-  };
+  setActingOn(proposalId);
+  setActionError('');
+  try {
+    await proposalsApi.acceptProposal(proposalId);
+    // The contract now exists on the server - take the client straight to it.
+    navigate('/client/contracts');
+  } catch (err) {
+    setActionError(err instanceof ApiError ? err.message : 'Could not hire this freelancer. Please try again.');
+    await load(); // refresh so the proposal list matches the server state
+  } finally {
+    setActingOn(null);
+  }
+};
 
   const handleReject = async (proposalId: string) => {
     setActingOn(proposalId);
+    setActionError('');
     try {
       await proposalsApi.rejectProposal(proposalId);
       await load();
+    } catch (err) {
+      setActionError(err instanceof ApiError ? err.message : 'Could not reject this proposal. Please try again.');
     } finally {
       setActingOn(null);
     }
@@ -107,9 +118,9 @@ export default function ClientJobProposalsPage() {
         <Link to="/client/jobs" className="text-sm text-muted hover:text-primary">&larr; My jobs</Link>
         <h1 className="text-2xl font-bold text-ink mt-4">{job.title}</h1>
         <p className="text-sm text-muted mt-1">{proposals.length} proposals</p>
-        {cvError && (
+        {(cvError || actionError) && (
           <div className="bg-surface border border-warn/30 text-warn rounded-lg text-sm py-2.5 px-4 mt-4">
-            {cvError}
+            {actionError || cvError}
           </div>
         )}
 
